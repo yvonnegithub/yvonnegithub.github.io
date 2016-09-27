@@ -289,15 +289,43 @@
       
         
           
-            <h1 id="浅析伪类与伪元素"><a href="#浅析伪类与伪元素" class="headerlink" title="浅析伪类与伪元素"></a>浅析伪类与伪元素</h1><blockquote>
-<p>  css可以通过id，class，属性选取元素，还可以通过元素的特殊状态去选取元素，这就是伪类与伪元素。伪类与伪元素是独立于文档元素，预定义的，<br>不同于id选择器，类选择器等直接从html文档层次结构（就是DOM树）选取元素。伪类和伪元素使用“：”与其它选择器区分。</p>
-<h2 id="1-伪类"><a href="#1-伪类" class="headerlink" title="1.伪类"></a>1.伪类</h2><blockquote>
-<p>通过伪类是通过元素当前所处的状态（或者特性）去选择元素，也就是说当元素达到某个状态的时候就会获得这个样式，当它不再处于这个状态时，它又<br>会失去这个样式，它和类的功能类似，但是独立于文档之外<br>常用的伪类：<br> 1.:link,应用于未访问过的链接<br> 2.:hover,鼠标悬停<br> 3.:active,用于被激活的元素：被惦记的链接／按下的按钮<br> 4.:visited,用于被访问过的链接<br> 5.:lang,用于带指定lang的元素<br> 6.:focus,用于获得键盘输入焦点的元素<br> 7.:first-child,<br>注意：对于同一个元素，:hover必须位于:link，visitied之后才会生效，:active必须位于:hover之后才会生效</p>
-<h2 id="2-伪元素"><a href="#2-伪元素" class="headerlink" title="2.伪元素"></a>2.伪元素</h2><p>  伪元素针对元素中特定的内容，比如选区某个元素的第一个字，第一行，选取内容前面或者后面的内容，控制的实际上也是元素，但是本身不存在于文档中。<br>常用的伪元素：<br> 1.:first-letter,用于元素文本的第一个字母<br> 2.:first-line,用于元素的第一行<br> 3.:before,在元素的最前面添加内容<br> 4.:after,在元素的最后面添加内容</p>
-<h3 id="关于：before，：after的用法"><a href="#关于：before，：after的用法" class="headerlink" title="关于：before，：after的用法"></a>关于：before，：after的用法</h3><p>content属性（必须): 用于在元素的头部的或者尾部添加内容，添加的内容不会出现在DOM中，不可复制，仅仅是在css渲染层加入；并且不能为空<br>使用伪元素清除浮动:<br> 1.原本：添加一个空的div，应用clear：both属性<br>    <pre><code><br>    .clear-fix{overflow:hidden;zoom:1}<br>    </code><br>    </pre><br> 2.伪元素：<br>    <pre><code><br>    .clear-fix:after{display:table,content:” ”,clear:both}<br>    </code><br>    </pre><br>扩展：配合display：block，position：absolute可以将一个特定的元素当成两个容器拼合出现双边框的效果（例子待补充）</p>
-<h3 id="补充关于-和-的问题"><a href="#补充关于-和-的问题" class="headerlink" title="补充关于:和::的问题"></a>补充关于:和::的问题</h3><p>仅仅需要使用这两个伪元素添加一些简单的字符的时候，只需要使用伪类的单冒号写法，以保证浏览器的兼容性；在css3中为了区别伪类与伪元素为伪元素<br> 使用了双冒号，因此如果使用了display和width等使元素脱离了原本的元素，建议按照标准双写</p>
+            <h4 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h4><blockquote>
+<p>css可以通过id，class，属性选取元素，还可以通过元素的特殊状态去选取元素，这就是伪类与伪元素。伪类与伪元素是独立于文档元素，预定义的,不同于id选择器，类选择器等直接从html文档层次结构（就是DOM树）选取元素。伪类和伪元素使用“：”与其它选择器区分.</p>
 </blockquote>
+<h2 id="一-伪类"><a href="#一-伪类" class="headerlink" title="一. 伪类"></a>一. 伪类</h2><blockquote>
+<p>通过伪类是通过元素当前所处的状态（或者特性）去选择元素，也就是说当元素达到某个状态的时候就会获得这个样式，当它不再处于这个状态时，它又会失去这个样式，它和类的功能类似，但是独立于文档之外.</p>
 </blockquote>
+<h4 id="常用的伪类："><a href="#常用的伪类：" class="headerlink" title="常用的伪类："></a>常用的伪类：</h4><ul>
+<li>:link,应用于未访问过的链接</li>
+<li>:hover,鼠标悬停</li>
+<li>:active,用于被激活的元素：被惦记的链接／按下的按钮</li>
+<li>:visited,用于被访问过的链接</li>
+<li>:lang,用于带指定lang的元素</li>
+<li>:focus,用于获得键盘输入焦点的元素</li>
+<li>:first-child </li>
+</ul>
+<h6 id="注意：对于同一个元素，-hover必须位于-link，visitied之后才会生效，-active必须位于-hover之后才会生效"><a href="#注意：对于同一个元素，-hover必须位于-link，visitied之后才会生效，-active必须位于-hover之后才会生效" class="headerlink" title="注意：对于同一个元素，:hover必须位于:link，visitied之后才会生效，:active必须位于:hover之后才会生效"></a>注意：对于同一个元素，:hover必须位于:link，visitied之后才会生效，:active必须位于:hover之后才会生效</h6><h2 id="二-伪元素"><a href="#二-伪元素" class="headerlink" title="二. 伪元素"></a>二. 伪元素</h2><blockquote>
+<p>伪元素针对元素中特定的内容，比如选区某个元素的第一个字，第一行，选取内容前面或者后面的内容，控制的实际上也是元素，但是本身不存在于文档中.</p>
+</blockquote>
+<h4 id="1-常用的伪元素："><a href="#1-常用的伪元素：" class="headerlink" title="1.常用的伪元素："></a>1.常用的伪元素：</h4><ul>
+<li>:first-letter,用于元素文本的第一个字母</li>
+<li>:first-line,用于元素的第一行</li>
+<li>:before,在元素的最前面添加内容</li>
+<li>:after,在元素的最后面添加内容</li>
+</ul>
+<h4 id="2-关于：before，：after的用法"><a href="#2-关于：before，：after的用法" class="headerlink" title="2.关于：before，：after的用法"></a>2.关于：before，：after的用法</h4><p>content属性（必须): 用于在元素的头部的或者尾部添加内容，添加的内容不会出现在DOM中,不可复制，仅仅是在css渲染层加入；并且不能为空.</p>
+<h4 id="3-使用伪元素清除浮动"><a href="#3-使用伪元素清除浮动" class="headerlink" title="3.使用伪元素清除浮动:"></a>3.使用伪元素清除浮动:</h4><p>1.原本：添加一个空的div，应用clear：both属性</p>
+<pre><code>
+.clear-fix{overflow:hidden;zoom:1}
+</code>
+</pre>
+2.伪元素：
+<pre><code>
+.clear-fix:after{display:table,content:” ”,clear:both}
+</code>
+</pre>
+
+<h6 id="扩展：配合display：block，position：absolute可以将一个特定的元素当成两个容器拼合出现双边框的效果（例子待补充"><a href="#扩展：配合display：block，position：absolute可以将一个特定的元素当成两个容器拼合出现双边框的效果（例子待补充" class="headerlink" title="扩展：配合display：block，position：absolute可以将一个特定的元素当成两个容器拼合出现双边框的效果（例子待补充)."></a>扩展：配合display：block，position：absolute可以将一个特定的元素当成两个容器拼合出现双边框的效果（例子待补充).</h6><h4 id="4-补充关于-和-的问题"><a href="#4-补充关于-和-的问题" class="headerlink" title="4.补充关于:和::的问题"></a>4.补充关于:和::的问题</h4><p>仅仅需要使用这两个伪元素添加一些简单的字符的时候，只需要使用伪类的单冒号写法，以保证浏览器的兼容性；在css3中为了区别伪类与伪元素为伪元素使用了双冒号，因此如果使用了display和width等使元素脱离了原本的元素，建议按照标准双写.</p>
 
           
         
