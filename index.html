@@ -245,6 +245,103 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/07/如何在页面上遍历一个map/" itemprop="url">
+                  如何在页面上遍历一个map
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T20:29:45+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="导语：在使用handlebars在页面上遍历后台返回的数据的时候，通常是遍历一个list，关于如何遍历map并不懂"><a href="#导语：在使用handlebars在页面上遍历后台返回的数据的时候，通常是遍历一个list，关于如何遍历map并不懂" class="headerlink" title="导语：在使用handlebars在页面上遍历后台返回的数据的时候，通常是遍历一个list，关于如何遍历map并不懂"></a>导语：在使用handlebars在页面上遍历后台返回的数据的时候，通常是遍历一个list，关于如何遍历map并不懂</h3><h2 id="一-可以使用handlebars的内置helper：＃each循环，通过-key获取到对象的key名称"><a href="#一-可以使用handlebars的内置helper：＃each循环，通过-key获取到对象的key名称" class="headerlink" title="一: 可以使用handlebars的内置helper：＃each循环，通过@key获取到对象的key名称"></a>一: 可以使用handlebars的内置helper：＃each循环，通过@key获取到对象的key名称</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">&#123;#each this&#125;&#125;</div><div class="line">    &lt;p&gt;&#123;&#123;@key&#125;&#125;:&#123;&#123;this&#125;&#125;&lt;/p&gt;</div><div class="line"></div><div class="line">&#123;&#123;/each&#125;&#125;</div><div class="line">#数据</div><div class="line">var data = &#123;</div><div class="line">    name: &apos;yyy&apos;,</div><div class="line">    age: 23</div><div class="line"></div><div class="line">&#125;;</div><div class="line">#页面效果</div><div class="line">name:yyy</div><div class="line">age:23</div></pre></td></tr></table></figure>
+<h2 id="二-通过js的for－in遍历map"><a href="#二-通过js的for－in遍历map" class="headerlink" title="二: 通过js的for－in遍历map"></a>二: 通过js的for－in遍历map</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">for (var key in data) &#123;</div><div class="line">     console.log(key+’:’+data[key])</div><div class="line">&#125;</div><div class="line">#数据</div><div class="line">var data = &#123;</div><div class="line">    name: &apos;yyy&apos;,</div><div class="line"></div><div class="line">    age: 23</div><div class="line">&#125;;</div><div class="line">#页面效果</div><div class="line">name:yyy</div><div class="line">age:23</div></pre></td></tr></table></figure>
+<h2 id="三-通过Jquery的-each函数遍历"><a href="#三-通过Jquery的-each函数遍历" class="headerlink" title="三:通过Jquery的$.each函数遍历"></a>三:通过Jquery的$.each函数遍历</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">$.each(data,function(key,value)&#123;</div><div class="line">     console.log(value+&apos;:&apos;+key)</div><div class="line">&#125;)</div><div class="line">#数据</div><div class="line">var data = &#123;</div><div class="line">    name: &apos;yyy&apos;,</div><div class="line"></div><div class="line">    age: 23</div><div class="line">&#125;;</div><div class="line">#页面效果</div><div class="line">name:yyy</div><div class="line">age:23</div></pre></td></tr></table></figure>
+<p>&gt;<br>注意：each和$.each的区别在于前者只能遍历数组，后者可以遍历数组或者对象，另外，如果使用$.each遍历map时，有key的值为数组，可以把each嵌套其中使用遍历</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/伪类与伪元素/" itemprop="url">
                   伪类与伪元素
                 </a>
@@ -604,7 +701,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">3</span>
+              <span class="site-state-item-count">4</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
