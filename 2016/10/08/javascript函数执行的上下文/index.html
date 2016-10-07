@@ -84,13 +84,31 @@
 
 
 
+<meta name="description" content="this关键字当函数作为一个对象的属性时，这个函数的上下文就是这个对象，也就是该函数this的值。js函数调用的四种方式：
+
+函数调用
+方法调用：和函数调用的区别在于调用上下文
+作为构造函数调用
+通过apply（），call（）方法调用，call和apply函数通常用来修改函数的上下文，将this指针替换成传入函数的第一个参数，只有一个参数的时候call和apply的使用方式是一样的，多个参数的时">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpac初步（一）">
-<meta property="og:url" content="https://yvonnegithub.github.io/2016/10/08/webpac初步（一）/index.html">
+<meta property="og:title" content="javascript函数执行的上下文">
+<meta property="og:url" content="https://yvonnegithub.github.io/2016/10/08/javascript函数执行的上下文/index.html">
 <meta property="og:site_name" content="Coding id design">
-<meta property="og:updated_time" content="2016-10-07T16:37:55.000Z">
+<meta property="og:description" content="this关键字当函数作为一个对象的属性时，这个函数的上下文就是这个对象，也就是该函数this的值。js函数调用的四种方式：
+
+函数调用
+方法调用：和函数调用的区别在于调用上下文
+作为构造函数调用
+通过apply（），call（）方法调用，call和apply函数通常用来修改函数的上下文，将this指针替换成传入函数的第一个参数，只有一个参数的时候call和apply的使用方式是一样的，多个参数的时">
+<meta property="og:updated_time" content="2016-10-07T17:01:23.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="webpac初步（一）">
+<meta name="twitter:title" content="javascript函数执行的上下文">
+<meta name="twitter:description" content="this关键字当函数作为一个对象的属性时，这个函数的上下文就是这个对象，也就是该函数this的值。js函数调用的四种方式：
+
+函数调用
+方法调用：和函数调用的区别在于调用上下文
+作为构造函数调用
+通过apply（），call（）方法调用，call和apply函数通常用来修改函数的上下文，将this指针替换成传入函数的第一个参数，只有一个参数的时候call和apply的使用方式是一样的，多个参数的时">
 
 
 
@@ -111,9 +129,9 @@
 
 
 
-  <link rel="canonical" href="https://yvonnegithub.github.io/2016/10/08/webpac初步（一）/"/>
+  <link rel="canonical" href="https://yvonnegithub.github.io/2016/10/08/javascript函数执行的上下文/"/>
 
-  <title> webpac初步（一） | Coding id design </title>
+  <title> javascript函数执行的上下文 | Coding id design </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -243,7 +261,7 @@
             
             
               
-                webpac初步（一）
+                javascript函数执行的上下文
               
             
           </h1>
@@ -255,7 +273,7 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-10-08T00:37:28+08:00" content="2016-10-08">
+            <time itemprop="dateCreated" datetime="2016-10-08T00:59:19+08:00" content="2016-10-08">
               2016-10-08
             </time>
           </span>
@@ -283,7 +301,17 @@
       
 
       
-        
+        <h1 id="this关键字"><a href="#this关键字" class="headerlink" title="this关键字"></a>this关键字</h1><p>当函数作为一个对象的属性时，这个函数的上下文就是这个对象，也就是该函数this的值。js函数调用的四种方式：</p>
+<ol>
+<li>函数调用</li>
+<li>方法调用：和函数调用的区别在于调用上下文</li>
+<li>作为构造函数调用</li>
+<li>通过apply（），call（）方法调用，call和apply函数通常用来修改函数的上下文，将this指针替换成传入函数的第一个参数，只有一个参数的时候call和apply的使用方式是一样的，多个参数的时候apply的第二个参数要加上［“ ”］，call只需要“ ”</li>
+</ol>
+<blockquote>
+<p>注：全局函数实际上是windows对象的一个属性</p>
+</blockquote>
+
       
     </div>
 
@@ -308,17 +336,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/10/08/react初学小记/" rel="next" title="react初学小记">
-                <i class="fa fa-chevron-left"></i> react初学小记
+              <a href="/2016/10/08/webpack初步（一）/" rel="next" title="webpack初步（一）">
+                <i class="fa fa-chevron-left"></i> webpack初步（一）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/10/08/webpack初步（一）/" rel="prev" title="webpack初步（一）">
-                webpack初步（一） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -418,7 +442,7 @@
               
             
             
-              <p class="post-toc-empty">此文章未包含目录</p>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#this关键字"><span class="nav-number">1.</span> <span class="nav-text">this关键字</span></a></li></ol></div>
             
           </div>
         </section>
