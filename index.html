@@ -245,6 +245,127 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/07/npm-scripts/" itemprop="url">
+                  npm-scripts
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-07T23:43:34+08:00" content="2016-10-07">
+              2016-10-07
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="导语：npm不仅可以用于模块管理，还可以用于执行脚本"><a href="#导语：npm不仅可以用于模块管理，还可以用于执行脚本" class="headerlink" title="导语：npm不仅可以用于模块管理，还可以用于执行脚本"></a>导语：npm不仅可以用于模块管理，还可以用于执行脚本</h3><p>package.json 文件有一个 scripts 字段，可以用于指定脚本命令，供 npm 直接调用</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">  &quot;scripts&quot;: &#123;</div><div class="line">    &quot;commit&quot;: &quot;sh test.sh&quot;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>其中test.sh 的内容：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git add --all</div><div class="line">git commit -m &quot;common commit&quot;</div><div class="line">git push</div></pre></td></tr></table></figure>
+<p>那么当我们运行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">npm run test 或者</div><div class="line">npm run-script test</div></pre></td></tr></table></figure>
+<p>就是相当于执行sh test.sh任务，npm run 会创建一个新的 shell，执行指定的命令，并将 node_modules/.bin 加入 PATH 变量。当脚本内容结束，则子 shell 关闭，回到父 shell 中。</p>
+<h2 id="npm-run-amp-npm-run-script"><a href="#npm-run-amp-npm-run-script" class="headerlink" title="npm run &amp; npm run-script"></a>npm run &amp; npm run-script</h2><p>npm run 是 npm run-script 的缩写，一般都使用 前者，但是后者可以更好地反应这个命令的本质,它们都能执行 package.json 文件 scripts 字段下指定的任务。直接运行 npm run 或 npm run-script，不加参数会列出 scripts 属性下所有可运行的命令极其命令内容。</p>
+<h3 id="1-关于路径"><a href="#1-关于路径" class="headerlink" title="1.关于路径"></a>1.关于路径</h3><p>npm run 命令会自动在环境变量 $PATH 添加 node_modules/.bin 目录，所以 scripts 字段里面调用命令时不用加上路径。所以我们在 package.json 文件内的 scripts 字段内指定任务的时候 一般 无需指定脚本文件的路径，只需要将脚本放到 ./node_module/.bin/ 目录下即可，命令会在 这个目录 下自动寻找对应的脚本文件。而无需使用 ./node_modules/.bin/jshint **.js。但是也是可以自己更改与指定你需要运行的脚本的文件位置</p>
+<h3 id="2-管道式命令"><a href="#2-管道式命令" class="headerlink" title="2.管道式命令"></a>2.管道式命令</h3><p>同时执行多个任务，可以借用 Linux 系统的 管道命令，将两个操作连在一起，在 package.json 文件的 scripts 字段内的一个任务可以由多个子任务组成，连接方式如下：</p>
+<ol>
+<li>|：连接两个任务</li>
+<li>&amp;&amp;：任务内部引用其他任务，子任务 先后 执行</li>
+<li>&amp;：任务内部引用其他任务，子任务 平行 执行</li>
+</ol>
+<h3 id="3-bash-脚本"><a href="#3-bash-脚本" class="headerlink" title="3.bash 脚本"></a>3.bash 脚本</h3><p>写在 scripts 属性中的命令，也可以在 node_modules/.bin 目录中直接写成 bash 脚本<br>只需要在命令行中执行npm run 脚本名就可以执行脚本</p>
+<h3 id="4-常见脚本命令"><a href="#4-常见脚本命令" class="headerlink" title="4.常见脚本命令"></a>4.常见脚本命令</h3><ol>
+<li>start ：一般用于项目的初始化，是接下来一切工作的依赖起始端</li>
+<li>dev ：规定开发阶段所要做的处理，比如监视文件变化、实时编译</li>
+<li>server ：一般用于启动服务</li>
+<li>test ：一般用于执行测试</li>
+<li>prod ：一般用于规定进入生产环境时需要做的处理</li>
+<li>help ：展示帮助信息</li>
+<li>docs ：生成文档</li>
+</ol>
+<h3 id="5-pre-和-post-脚本命令"><a href="#5-pre-和-post-脚本命令" class="headerlink" title="5.pre- 和 post- 脚本命令"></a>5.pre- 和 post- 脚本命令</h3><p>npm run 为每条命令提供了 pre- 和 post- 两个钩子。以 npm run test 为例，如果我们的 scripts 字段规定了 pretest 和 posttest.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">    &quot;test&quot;: &quot;mocha test/&quot;,</div><div class="line">    &quot;pretest&quot;: &quot;echo test started!&quot;,</div><div class="line">    &quot;posttest&quot;: &quot;echo test end!&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>则会先执行 pretest 任务，再执行 test 任务，完成 test 任务后即执行 posttest 任务。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/07/node－npm/" itemprop="url">
                   node－npm
                 </a>
@@ -851,7 +972,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
