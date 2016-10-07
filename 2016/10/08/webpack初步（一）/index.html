@@ -84,43 +84,37 @@
 
 
 
-<meta name="description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta name="description" content="###为什么要使用webpack最开始的js文件加载方式是把每一个文件看成是一个模块，它们的接口通常是暴露在全局作用域下，也就是定义在 window 对象中，不同模块的接口调用都是一个作用域中，通过script标签来调用，这样就容易造成:
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+文件只能按照 script标签的书写顺序进行加载
+全局作用域下容易造成变量冲突
+开发的时候必须了解模块和代码库的依赖关系
+大型项目中各种资源难以管理
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
+为了解">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用github和hexo搭建自己的博客">
-<meta property="og:url" content="https://yvonnegithub.github.io/2016/09/27/如何使用github和hexo搭建自己的博客/index.html">
+<meta property="og:title" content="webpack初步（一）">
+<meta property="og:url" content="https://yvonnegithub.github.io/2016/10/08/webpack初步（一）/index.html">
 <meta property="og:site_name" content="Coding id design">
-<meta property="og:description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta property="og:description" content="###为什么要使用webpack最开始的js文件加载方式是把每一个文件看成是一个模块，它们的接口通常是暴露在全局作用域下，也就是定义在 window 对象中，不同模块的接口调用都是一个作用域中，通过script标签来调用，这样就容易造成:
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+文件只能按照 script标签的书写顺序进行加载
+全局作用域下容易造成变量冲突
+开发的时候必须了解模块和代码库的依赖关系
+大型项目中各种资源难以管理
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
-<meta property="og:updated_time" content="2016-09-30T07:57:20.000Z">
+为了解">
+<meta property="og:updated_time" content="2016-10-07T16:56:17.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用github和hexo搭建自己的博客">
-<meta name="twitter:description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta name="twitter:title" content="webpack初步（一）">
+<meta name="twitter:description" content="###为什么要使用webpack最开始的js文件加载方式是把每一个文件看成是一个模块，它们的接口通常是暴露在全局作用域下，也就是定义在 window 对象中，不同模块的接口调用都是一个作用域中，通过script标签来调用，这样就容易造成:
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+文件只能按照 script标签的书写顺序进行加载
+全局作用域下容易造成变量冲突
+开发的时候必须了解模块和代码库的依赖关系
+大型项目中各种资源难以管理
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
+为了解">
 
 
 
@@ -141,9 +135,9 @@ hexo s –debug 启动服务器并提交调试信息到git">
 
 
 
-  <link rel="canonical" href="https://yvonnegithub.github.io/2016/09/27/如何使用github和hexo搭建自己的博客/"/>
+  <link rel="canonical" href="https://yvonnegithub.github.io/2016/10/08/webpack初步（一）/"/>
 
-  <title> 如何使用github和hexo搭建自己的博客 | Coding id design </title>
+  <title> webpack初步（一） | Coding id design </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +267,7 @@ hexo s –debug 启动服务器并提交调试信息到git">
             
             
               
-                如何使用github和hexo搭建自己的博客
+                webpack初步（一）
               
             
           </h1>
@@ -285,8 +279,8 @@ hexo s –debug 启动服务器并提交调试信息到git">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T09:20:33+08:00" content="2016-09-27">
-              2016-09-27
+            <time itemprop="dateCreated" datetime="2016-10-08T00:38:34+08:00" content="2016-10-08">
+              2016-10-08
             </time>
           </span>
 
@@ -313,20 +307,23 @@ hexo s –debug 启动服务器并提交调试信息到git">
       
 
       
-        <h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p> Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题</p>
+        <p>###为什么要使用webpack<br>最开始的js文件加载方式是把每一个文件看成是一个模块，它们的接口通常是暴露在全局作用域下，也就是定义在 window 对象中，不同模块的接口调用都是一个作用域中，通过script标签来调用，这样就容易造成:</p>
 <ul>
-<li>第一步：搭建安装<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">hexo</a></li>
-<li>第二步：配置<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next</a></li>
-<li>第三步：建立自己的博客<blockquote>
-<ol>
-<li>hexo new 博客名 (新建一篇文章)</li>
-<li>hexo g -d 生成静态文件，－d（文件生成后立即部署网站）</li>
-<li>hexo clean 清除缓存文件db.json,和已生成的静态文件</li>
-<li>hexo s –debug 启动服务器并提交调试信息到github</li>
-</ol>
-</blockquote>
-</li>
+<li>文件只能按照 script标签的书写顺序进行加载</li>
+<li>全局作用域下容易造成变量冲突</li>
+<li>开发的时候必须了解模块和代码库的依赖关系</li>
+<li>大型项目中各种资源难以管理</li>
 </ul>
+<p>为了解决这种问题webpack应运而生</p>
+<h1 id="一-什么是webpack"><a href="#一-什么是webpack" class="headerlink" title="一 什么是webpack"></a>一 什么是webpack</h1><p>Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
+<h1 id="二-webpack的特点"><a href="#二-webpack的特点" class="headerlink" title="二 webpack的特点"></a>二 webpack的特点</h1><h3 id="1-代码拆分"><a href="#1-代码拆分" class="headerlink" title="1.代码拆分"></a>1.代码拆分</h3><p>Webpack 有两种组织模块依赖的方式，同步和异步。异步依赖作为分割点，形成一个新的块。在优化了依赖树后，每一个异步区块都作为一个文件被打包。</p>
+<h3 id="2-Loader"><a href="#2-Loader" class="headerlink" title="2.Loader"></a>2.Loader</h3><p>Webpack 本身只能处理原生的 JavaScript 模块，但是 loader 转换器可以将各种类型的资源转换成 JavaScript 模块。这样，任何资源都可以成为 Webpack 可以处理的模块。</p>
+<h3 id="3-智能解析"><a href="#3-智能解析" class="headerlink" title="3.智能解析"></a>3.智能解析</h3><p>Webpack 有一个智能解析器，几乎可以处理任何第三方库，无论它们的模块形式是 CommonJS、 AMD 还是普通的 JS 文件。甚至在加载依赖的时候，允许使用动态表达式 require(“./templates/“ + name + “.jade”)</p>
+<h3 id="4-快速运行"><a href="#4-快速运行" class="headerlink" title="4.快速运行"></a>4.快速运行</h3><p>Webpack 使用异步 I/O 和多级缓存提高运行效率</p>
+<h3 id="5-插件系统"><a href="#5-插件系统" class="headerlink" title="5.插件系统"></a>5.插件系统</h3><p>Webpack 还有一个功能丰富的插件系统。大多数内容功能都是基于这个插件系统运行的</p>
+<h1 id="三-安装webpack"><a href="#三-安装webpack" class="headerlink" title="三 安装webpack"></a>三 安装webpack</h1><p>首先要安装 Node.js，再用 npm 安装 Webpack：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack -g</div></pre></td></tr></table></figure>
+<h1 id="四-关于loader"><a href="#四-关于loader" class="headerlink" title="四 关于loader"></a>四 关于loader</h1><p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。Loader 可以理解为是模块和资源的转换器，它本身是一个函数，也是运行在 node.js 环境中的 JavaScript 模块，它接受源文件作为参数，返回转换的结果。这样，我们就可以通过 require 来加载任何类型的模块或文件，比如 CoffeeScript、 JSX、 LESS 或图片。</p>
 
       
     </div>
@@ -352,17 +349,13 @@ hexo s –debug 启动服务器并提交调试信息到git">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/17/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/10/08/webpac初步（一）/" rel="next" title="webpac初步（一）">
+                <i class="fa fa-chevron-left"></i> webpac初步（一）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/27/伪类与伪元素/" rel="prev" title="伪类与伪元素">
-                伪类与伪元素 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,7 +455,7 @@ hexo s –debug 启动服务器并提交调试信息到git">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一-什么是webpack"><span class="nav-number">1.</span> <span class="nav-text">一 什么是webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#二-webpack的特点"><span class="nav-number">2.</span> <span class="nav-text">二 webpack的特点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-代码拆分"><span class="nav-number">2.0.1.</span> <span class="nav-text">1.代码拆分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-Loader"><span class="nav-number">2.0.2.</span> <span class="nav-text">2.Loader</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-智能解析"><span class="nav-number">2.0.3.</span> <span class="nav-text">3.智能解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-快速运行"><span class="nav-number">2.0.4.</span> <span class="nav-text">4.快速运行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-插件系统"><span class="nav-number">2.0.5.</span> <span class="nav-text">5.插件系统</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#三-安装webpack"><span class="nav-number">3.</span> <span class="nav-text">三 安装webpack</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#四-关于loader"><span class="nav-number">4.</span> <span class="nav-text">四 关于loader</span></a></li></ol></div>
             
           </div>
         </section>

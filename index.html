@@ -245,6 +245,209 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/08/webpack初步（一）/" itemprop="url">
+                  webpack初步（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T00:38:34+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>###为什么要使用webpack<br>最开始的js文件加载方式是把每一个文件看成是一个模块，它们的接口通常是暴露在全局作用域下，也就是定义在 window 对象中，不同模块的接口调用都是一个作用域中，通过script标签来调用，这样就容易造成:</p>
+<ul>
+<li>文件只能按照 script标签的书写顺序进行加载</li>
+<li>全局作用域下容易造成变量冲突</li>
+<li>开发的时候必须了解模块和代码库的依赖关系</li>
+<li>大型项目中各种资源难以管理</li>
+</ul>
+<p>为了解决这种问题webpack应运而生</p>
+<h1 id="一-什么是webpack"><a href="#一-什么是webpack" class="headerlink" title="一 什么是webpack"></a>一 什么是webpack</h1><p>Webpack 是一个模块打包器。它将根据模块的依赖关系进行静态分析，然后将这些模块按照指定的规则生成对应的静态资源。</p>
+<h1 id="二-webpack的特点"><a href="#二-webpack的特点" class="headerlink" title="二 webpack的特点"></a>二 webpack的特点</h1><h3 id="1-代码拆分"><a href="#1-代码拆分" class="headerlink" title="1.代码拆分"></a>1.代码拆分</h3><p>Webpack 有两种组织模块依赖的方式，同步和异步。异步依赖作为分割点，形成一个新的块。在优化了依赖树后，每一个异步区块都作为一个文件被打包。</p>
+<h3 id="2-Loader"><a href="#2-Loader" class="headerlink" title="2.Loader"></a>2.Loader</h3><p>Webpack 本身只能处理原生的 JavaScript 模块，但是 loader 转换器可以将各种类型的资源转换成 JavaScript 模块。这样，任何资源都可以成为 Webpack 可以处理的模块。</p>
+<h3 id="3-智能解析"><a href="#3-智能解析" class="headerlink" title="3.智能解析"></a>3.智能解析</h3><p>Webpack 有一个智能解析器，几乎可以处理任何第三方库，无论它们的模块形式是 CommonJS、 AMD 还是普通的 JS 文件。甚至在加载依赖的时候，允许使用动态表达式 require(“./templates/“ + name + “.jade”)</p>
+<h3 id="4-快速运行"><a href="#4-快速运行" class="headerlink" title="4.快速运行"></a>4.快速运行</h3><p>Webpack 使用异步 I/O 和多级缓存提高运行效率</p>
+<h3 id="5-插件系统"><a href="#5-插件系统" class="headerlink" title="5.插件系统"></a>5.插件系统</h3><p>Webpack 还有一个功能丰富的插件系统。大多数内容功能都是基于这个插件系统运行的</p>
+<h1 id="三-安装webpack"><a href="#三-安装webpack" class="headerlink" title="三 安装webpack"></a>三 安装webpack</h1><p>首先要安装 Node.js，再用 npm 安装 Webpack：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install webpack -g</div></pre></td></tr></table></figure>
+<h1 id="四-关于loader"><a href="#四-关于loader" class="headerlink" title="四 关于loader"></a>四 关于loader</h1><p>Webpack 本身只能处理 JavaScript 模块，如果要处理其他类型的文件，就需要使用 loader 进行转换。Loader 可以理解为是模块和资源的转换器，它本身是一个函数，也是运行在 node.js 环境中的 JavaScript 模块，它接受源文件作为参数，返回转换的结果。这样，我们就可以通过 require 来加载任何类型的模块或文件，比如 CoffeeScript、 JSX、 LESS 或图片。</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/08/webpac初步（一）/" itemprop="url">
+                  webpac初步（一）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-08T00:37:28+08:00" content="2016-10-08">
+              2016-10-08
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/08/react初学小记/" itemprop="url">
                   react初学小记
                 </a>
@@ -289,7 +492,7 @@
       
         
           
-            <p>react是一个js库。<br>特点：</p>
+            <p>react是一个js库<br>特点：</p>
 <ol>
 <li>单向数据流，</li>
 <li>虚拟DOM，</li>
@@ -298,10 +501,12 @@
 <li>不使用模版,</li>
 </ol>
 <p>通过React.creatClass( )创建一个新的组件，组件再通过render（）方法接受一个参数返回一个展示的对象（react组件树，最终被渲染成html），其中接收数据通过this.props,保持组件内部状态通过this.state,当组件内部状态变化，需要重新调用render更新。</p>
-<blockquote>
-<p>props：从父节点向子节点传递的数据，也就是通过props可以读取到父节点组件传递过来的数据，props是不可被子节点修改的，被父节点拥有。</p>
-<p>state：this.state是组件私有的，可以调用this.setState()来修改它，当状态更新之后，组件重新渲染自己。</p>
-</blockquote>
+<ul>
+<li><p>props：从父节点向子节点传递的数据，也就是通过props可以读取到父节点组件传递过来的数据，props是不可被子节点修改的，被父节点拥有。</p>
+</li>
+<li><p>state：this.state是组件私有的，可以调用this.setState()来修改它，当状态更新之后，组件重新渲染自己。</p>
+</li>
+</ul>
 <h3 id="如何判断是否是state："><a href="#如何判断是否是state：" class="headerlink" title="如何判断是否是state："></a>如何判断是否是state：</h3><ol>
 <li>是否是通过props从父级传过来的，如果是，可能就不是state</li>
 <li>随时间变化吗，如果不是可能就不是state</li>
@@ -1083,7 +1288,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">7</span>
+              <span class="site-state-item-count">9</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
