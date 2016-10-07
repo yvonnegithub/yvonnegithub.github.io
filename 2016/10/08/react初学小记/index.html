@@ -84,43 +84,46 @@
 
 
 
-<meta name="description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta name="description" content="react是一个js库。特点：
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+单向数据流，
+虚拟DOM，
+模块化，
+组件化，
+不使用模版,
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
+通过React.creatClass( )创建一个新的组件，组件再通过render（）方法接受一个参数返回一个展示的对象（react组件树，最终被渲染成html），其中接收数据通过this.props,保持组件内部状态通过this.state,当组件内部状态变化，需要重新调用render更新。
+
+pr">
 <meta property="og:type" content="article">
-<meta property="og:title" content="如何使用github和hexo搭建自己的博客">
-<meta property="og:url" content="https://yvonnegithub.github.io/2016/09/27/如何使用github和hexo搭建自己的博客/index.html">
+<meta property="og:title" content="react初学小记">
+<meta property="og:url" content="https://yvonnegithub.github.io/2016/10/08/react初学小记/index.html">
 <meta property="og:site_name" content="Coding id design">
-<meta property="og:description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta property="og:description" content="react是一个js库。特点：
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+单向数据流，
+虚拟DOM，
+模块化，
+组件化，
+不使用模版,
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
-<meta property="og:updated_time" content="2016-09-30T07:57:20.000Z">
+通过React.creatClass( )创建一个新的组件，组件再通过render（）方法接受一个参数返回一个展示的对象（react组件树，最终被渲染成html），其中接收数据通过this.props,保持组件内部状态通过this.state,当组件内部状态变化，需要重新调用render更新。
+
+pr">
+<meta property="og:updated_time" content="2016-10-07T16:18:51.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="如何使用github和hexo搭建自己的博客">
-<meta name="twitter:description" content="导语 Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题
+<meta name="twitter:title" content="react初学小记">
+<meta name="twitter:description" content="react是一个js库。特点：
 
-第一步：搭建安装hexo
-第二步：配置next
-第三步：建立自己的博客
+单向数据流，
+虚拟DOM，
+模块化，
+组件化，
+不使用模版,
 
-hexo new 博客名 (新建一篇文章)
-hexo g -d 生成静态文件，－d（文件生成后立即部署网站）
-hexo clean 清除缓存文件db.json,和已生成的静态文件
-hexo s –debug 启动服务器并提交调试信息到git">
+通过React.creatClass( )创建一个新的组件，组件再通过render（）方法接受一个参数返回一个展示的对象（react组件树，最终被渲染成html），其中接收数据通过this.props,保持组件内部状态通过this.state,当组件内部状态变化，需要重新调用render更新。
+
+pr">
 
 
 
@@ -141,9 +144,9 @@ hexo s –debug 启动服务器并提交调试信息到git">
 
 
 
-  <link rel="canonical" href="https://yvonnegithub.github.io/2016/09/27/如何使用github和hexo搭建自己的博客/"/>
+  <link rel="canonical" href="https://yvonnegithub.github.io/2016/10/08/react初学小记/"/>
 
-  <title> 如何使用github和hexo搭建自己的博客 | Coding id design </title>
+  <title> react初学小记 | Coding id design </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -273,7 +276,7 @@ hexo s –debug 启动服务器并提交调试信息到git">
             
             
               
-                如何使用github和hexo搭建自己的博客
+                react初学小记
               
             
           </h1>
@@ -285,8 +288,8 @@ hexo s –debug 启动服务器并提交调试信息到git">
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T09:20:33+08:00" content="2016-09-27">
-              2016-09-27
+            <time itemprop="dateCreated" datetime="2016-10-08T00:16:41+08:00" content="2016-10-08">
+              2016-10-08
             </time>
           </span>
 
@@ -313,20 +316,24 @@ hexo s –debug 启动服务器并提交调试信息到git">
       
 
       
-        <h3 id="导语"><a href="#导语" class="headerlink" title="导语"></a>导语</h3><p> Hexo是一个博客框架，使用markdown解析文章，可配合next设置主题</p>
-<ul>
-<li>第一步：搭建安装<a href="https://hexo.io/zh-cn/docs/commands.html" target="_blank" rel="external">hexo</a></li>
-<li>第二步：配置<a href="http://theme-next.iissnan.com/getting-started.html" target="_blank" rel="external">next</a></li>
-<li>第三步：建立自己的博客<blockquote>
+        <p>react是一个js库。<br>特点：</p>
 <ol>
-<li>hexo new 博客名 (新建一篇文章)</li>
-<li>hexo g -d 生成静态文件，－d（文件生成后立即部署网站）</li>
-<li>hexo clean 清除缓存文件db.json,和已生成的静态文件</li>
-<li>hexo s –debug 启动服务器并提交调试信息到github</li>
+<li>单向数据流，</li>
+<li>虚拟DOM，</li>
+<li>模块化，</li>
+<li>组件化，</li>
+<li>不使用模版,</li>
 </ol>
+<p>通过React.creatClass( )创建一个新的组件，组件再通过render（）方法接受一个参数返回一个展示的对象（react组件树，最终被渲染成html），其中接收数据通过this.props,保持组件内部状态通过this.state,当组件内部状态变化，需要重新调用render更新。</p>
+<blockquote>
+<p>props：从父节点向子节点传递的数据，也就是通过props可以读取到父节点组件传递过来的数据，props是不可被子节点修改的，被父节点拥有。</p>
+<p>state：this.state是组件私有的，可以调用this.setState()来修改它，当状态更新之后，组件重新渲染自己。</p>
 </blockquote>
-</li>
-</ul>
+<h3 id="如何判断是否是state："><a href="#如何判断是否是state：" class="headerlink" title="如何判断是否是state："></a>如何判断是否是state：</h3><ol>
+<li>是否是通过props从父级传过来的，如果是，可能就不是state</li>
+<li>随时间变化吗，如果不是可能就不是state</li>
+<li>能否基于其它任意组件的state或props计算出它，如果是，就不是state</li>
+</ol>
 
       
     </div>
@@ -352,17 +359,13 @@ hexo s –debug 启动服务器并提交调试信息到git">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/17/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/10/07/npm-scripts/" rel="next" title="npm-scripts">
+                <i class="fa fa-chevron-left"></i> npm-scripts
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/27/伪类与伪元素/" rel="prev" title="伪类与伪元素">
-                伪类与伪元素 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -462,7 +465,7 @@ hexo s –debug 启动服务器并提交调试信息到git">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#导语"><span class="nav-number">1.</span> <span class="nav-text">导语</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#如何判断是否是state："><span class="nav-number">1.</span> <span class="nav-text">如何判断是否是state：</span></a></li></ol></div>
             
           </div>
         </section>
