@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next mist use-motion">
+<html class="theme-next pisces use-motion">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -96,7 +96,7 @@
 <script type="text/javascript" id="hexo.configuration">
   var NexT = window.NexT || {};
   var CONFIG = {
-    scheme: 'Mist',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -223,6 +223,114 @@
           <div id="content" class="content">
             
   <section id="posts" class="posts-expand">
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/10/10/react-router小结/" itemprop="url">
+                  react-router小结
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-10T18:21:58+08:00" content="2016-10-10">
+              2016-10-10
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="导语：react-router是基于react的一个路由库，可以快速向应用中添加视图和数据流"><a href="#导语：react-router是基于react的一个路由库，可以快速向应用中添加视图和数据流" class="headerlink" title="导语：react-router是基于react的一个路由库，可以快速向应用中添加视图和数据流"></a>导语：react-router是基于react的一个路由库，可以快速向应用中添加视图和数据流</h3><h2 id="一-什么是history？"><a href="#一-什么是history？" class="headerlink" title="一 什么是history？"></a>一 什么是history？</h2><p>用来监听浏览器的url地址变化，并解析这个url转化成location对象，然后router使用它匹配到路由，最后正确的渲染到对应的组件，常见的有三种形式，但是也可以自定义：</p>
+<ol>
+<li>createHashHistory:默认的history，它用到的是 URL 中的 hash（#）部分去创建路由，但是不推荐使用</li>
+<li>createBrowserHistory，推荐使用</li>
+<li>createMemoryHistory</li>
+</ol>
+<h2 id="二-离开和进入的hook"><a href="#二-离开和进入的hook" class="headerlink" title="二 离开和进入的hook"></a>二 离开和进入的hook</h2><p>route可以定义onEnter,onLeave两个hook，这些hook会在页面跳转时触发一次，可以在权限验证或者路由跳转之前将数据持久存储起来。在路由跳转的过程中，onleave hook会在所有将离开的路由中触发，从最下层的子路由开始直到最外层父路由结束，然后onEnter hook会从最外层的父路由开始直到最下层子路由结束。</p>
+<h2 id="三-总结"><a href="#三-总结" class="headerlink" title="三 总结"></a>三 总结</h2><ol>
+<li>Router 与 Route 一样都是 react 组件，它的 history 对象是整个路由系统的核心，它暴漏了很多属性和方法在路由系统中使用；</li>
+<li>Route 的 path 属性表示路由组件所对应的路径，可以是绝对或相对路径，相对路径可继承；</li>
+<li>Redirect 是一个重定向组件，有 from 和 to 两个属性；</li>
+<li>Route 的 onEnter 钩子将用于在渲染对象的组件前做拦截操作，比如验证权限；</li>
+<li>在 Route 中，可以使用 component 指定单个组件，或者通过 components 指定多个组件集合；</li>
+<li>param 通过 /:param 的方式传递，这种写法与 express 以及 ruby on rails 保持一致，符合 RestFul 规范</li>
+</ol>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
     
       
 
@@ -1298,7 +1406,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">10</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1352,7 +1460,7 @@
 <div class="theme-info">
   主题 -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Mist
+    NexT.Pisces
   </a>
 </div>
 
@@ -1417,6 +1525,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
 
   
 
