@@ -245,6 +245,116 @@
             
               
                 
+                <a class="post-title-link" href="/2016/11/11/react中reducer使用中遇到的问题（待补充）/" itemprop="url">
+                  react中reducer使用中遇到的问题（待补充）
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-11-11T17:29:08+08:00" content="2016-11-11">
+              2016-11-11
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>在使用react开发的过程中，在一个页面发起多个请求，实现是：</p>
+<p>1.初始化state为一个大对象包含多个子对象，</p>
+<p>2.每次发起请求在reducer中更新state中对应的子对象</p>
+<p>3.再通过mapStateToProps取出所需的对象作为组件的prop</p>
+<p>##第一步：初始化state</p>
+<p>initialState大概长这样：两次请求返回的对象分别为branch和manage</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">const initialState = &#123;</div><div class="line">  branch: &#123;</div><div class="line">    fetching: false,</div><div class="line">    data: &#123;</div><div class="line">      rowValues: [],</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">  manage: &#123;</div><div class="line">    fetching: false,</div><div class="line">    data: &#123;</div><div class="line">      rowValues: [],</div><div class="line">    &#125;,</div><div class="line">  &#125;,</div><div class="line">  </div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>##第二步 请求完成后更新reducer</p>
+<p>由于在一个reducer中，更新的操作要注意，容易出现引用的问题，最初的做法是在最外层定义一个newState,state赋值给newState,再去更新对应的对象，但是这样会带来引用的问题：组件执行的时候首先从mapStateToProps里取出state，渲染组件，再去更新reducer，由于引用的问题，浅层比较无法识别对象内嵌对象的改变，于是不会重新渲染组件，就出现了state里面拿到了请求返回的数据却没有显示到页面上的问题。</p>
+<p>原来的写法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">export default function inventoryStatisticsReducer(state = initialState, action) &#123;</div><div class="line">  let newState = state;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS_INIT:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS_ERRORS:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS:</div><div class="line">      newState.branch = action.payload;</div><div class="line">      return newState;</div><div class="line">    case RECEIVE_INVENTORYGOODS_INIT:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYGOODS_ERRORS:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYGOODS:</div><div class="line">      return &#123; ...state, manage: action.payload &#125;;</div><div class="line">    default:</div><div class="line">      return state;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>改进的写法:用…把state展开，重新给对象赋值避免了对象的引用问题</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">export default function inventoryStatisticsReducer(state = initialState, action) &#123;</div><div class="line">  let newState = state;</div><div class="line">  switch (action.type) &#123;</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS_INIT:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS_ERRORS:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYSTATISTICS:</div><div class="line">      return &#123; ...state, branch: action.payload &#125;;</div><div class="line">    case RECEIVE_INVENTORYGOODS_INIT:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYGOODS_ERRORS:</div><div class="line">      return Object.assign(&#123;&#125;, state, action.payload);</div><div class="line">    case RECEIVE_INVENTORYGOODS:</div><div class="line">      return &#123; ...state, manage: action.payload &#125;;</div><div class="line">    default:</div><div class="line">      return state;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>注： object.assign（）方法是对象的浅层比较，生成一个新的对象，无法解决对象的引用的问题</p>
+<p>##第三步：从state中取对象</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">const mapStateTopProps = state =&gt; (&#123;</div><div class="line">  inventoryStatistics: state.inventoryStatistics.branch,</div><div class="line">  branches: state.inventoryStatistics.allBranches,</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>注：代码分割后injectReducer的key值是state的名字</p>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/10/10/react-router小结/" itemprop="url">
                   react-router小结
                 </a>
@@ -1263,111 +1373,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/08/17/hello-world/" itemprop="url">
-                  Hello World
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-17T18:42:30+08:00" content="2016-08-17">
-              2016-08-17
-            </time>
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1406,7 +1418,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
